@@ -158,7 +158,10 @@ public class MainActivity extends Activity {
                 for (int i=0; i<contactArray.length(); i++) {
                     JSONObject contact = contactArray.getJSONObject(i);
                     String name = contact.getString("title");
-                    String email = contact.getString("gd$email");
+
+                    JSONArray emailArray = contact.getJSONArray("gd$email");
+                    String email = emailArray.getJSONObject(0).getString("address");
+
                     GoogleContact googleContact = new GoogleContact(name,email);
                     dataList.add(googleContact);
                 }
